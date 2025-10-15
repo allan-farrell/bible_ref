@@ -30,7 +30,7 @@ module BibleRef
     rule(:verse)       { num.as(:verse) }
 
     rule(:word)        { (match("[1234]").maybe >> match("[^0-9]").repeat(1)).as(:word) }
-    rule(:separator)   { (str(",") >> space.maybe) | (space.maybe >> str("&") >> space.maybe) }
+    rule(:separator)   { (str(";") >> space.maybe) | (str(",") >> space.maybe) | (space.maybe >> str("&") >> space.maybe) }
     rule(:num)         { match("[0-9]").repeat(1).as(:num) }
     rule(:space)       { str(" ").repeat(1) }
 
