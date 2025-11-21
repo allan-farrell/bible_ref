@@ -156,4 +156,34 @@ describe BibleRef::Parser do
       }
     )
   end
+
+  it 'parses verse with one letter portion' do
+    expect(parse('Romans 12-14a')).to eq(
+      book: 'Romans',
+      refs: [
+        { chapter: 12 },
+        { chapter: 14 }
+      ]
+    )
+  end
+  it 'parses verse with two letter portion' do
+    expect(parse('Romans 12-14ab')).to eq(
+      book: 'Romans',
+      refs: [
+        { chapter: 12 },
+        { chapter: 14 }
+      ]
+    )
+  end
+
+  it 'parses verse with two letter portion' do
+    expect(parse('Romans 12-14abcd')).to eq(
+      book: 'Romans',
+      refs: [
+        { chapter: 12 },
+        { chapter: 14 }
+      ]
+    )
+  end
+
 end
