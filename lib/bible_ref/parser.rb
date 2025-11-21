@@ -23,12 +23,11 @@ module BibleRef
     rule(:ref_range)   { (ref.as(:from) >> str("-") >> (ref | verse).as(:to)).as(:range) }
     rule(:verse_range) { (verse.as(:from) >> str("-") >> verse.as(:to)).as(:range) }
 
-    rule(:ref)         { chapter >> str(":") >> verse }
+    rule(:ref)         { chapter >> str(":") >> space.maybe  >> verse }
 
     rule(:chapters)    { (chapter >> (match("[-,]") >> chapter).repeat).as(:refs) }
     rule(:chapter)     { num.as(:chapter) }
     rule(:verse)       { num.as(:verse)  }
-    rule(:partial_verse) { num >> match("[^a-z]").maybe}
 
     rule(:word)        { (match("[1234]").maybe >> match("[^0-9]").repeat(1)).as(:word) }
     rule(:separator)   { (str(";") >> space.maybe) | (str(",") >> space.maybe) | (space.maybe >> str("&") >> space.maybe) }

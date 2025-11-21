@@ -186,4 +186,14 @@ describe BibleRef::Parser do
     )
   end
 
+    it 'parses verse with complex letter portion' do
+    expect(parse('Psalm 23:1-3a, 3b-4, 5, 6')).to eq(
+      book: 'Psalm',
+      refs: [
+        {range: {from: {chapter: 23, verse: 1}, to: {verse: 3}}}, 
+        {range: {from: {verse: 3}, to: {verse: 4}}}, {verse: 5}, {verse: 6}
+      ]
+    )
+  end
+
 end
